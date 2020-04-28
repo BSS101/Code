@@ -1,0 +1,81 @@
+function setup() {
+	createCanvas(windowWidth, windowHeight);
+	
+}
+var ypos = [];
+var xpos = [];
+var speedx =[];
+var speedy =[];
+
+var bodyLength = 10;
+var bodyHeight = 10;
+var bodyColor = [];
+//var tailWidth = bodyLength/4;
+//var tailHeight = bodyHeight/2;
+
+
+draw = function() {
+    background(127, 204, 255);
+
+mouseClicked = function(){
+xpos.push(mouseX);
+ypos.push(mouseY);
+speedx.push(random(-4,4));
+speedy.push(random(-4,4));
+bodyColor.push(color(random(0,255),random(0,255),random(0,255)));
+
+
+};
+
+//collision edges
+
+for (var i=0; i < xpos.length;i++){
+    
+    noStroke();
+    fill(bodyColor[i]);
+ 
+ if (xpos[i]>windowWidth-bodyLength/2){
+     
+     speedx[i] = -1*speedx[i];
+ }
+ if (xpos[i]<bodyLength/2){
+     
+     speedx[i] = abs(speedx[i]);
+ }
+  if (ypos[i]>windowHeight-bodyLength/2){
+     
+     speedy[i] = -1*speedy[i];
+ }
+ 
+ if (ypos[i]<bodyLength/2){
+     
+     speedy[i] = abs(speedy[i]);
+ }
+  
+  
+// collision balls
+// conservation of momentum in 2D
+// v_1(after) = v_2
+// v_2(after) = v_1
+// http://archive.cnx.org/contents/537e211d-0835-49c3-8ca9-6ddeeca593f8@1/two-body-collision-problem
+
+for (var j=0;j<xpos.length;j++){
+ if (dist(xpos[i],ypos[i],xpos[j],ypos[j])<bodyLength && j>i){
+
+var sx = speedx[i];
+var sy = speedy[i];
+speedx[i] = speedx[j];
+speedy[i] = speedy[j];
+speedx[j] = sx;
+speedy[j] = sy;
+ }
+}
+      ellipse(xpos[i], ypos[i], bodyLength, bodyHeight);
+ 
+     // move the ball
+    xpos[i] = xpos[i] + speedx[i];
+    ypos[i] = ypos[i] + speedy[i];
+
+
+}
+};
