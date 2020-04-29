@@ -1,0 +1,49 @@
+// definerer variable [] betyder at der er mange x-værdier osv; én for hver ellipse
+	var farve;
+	var x = [200,600,800];
+	var y = [0,-100,-300];
+	var vy = 2;
+
+function setup() {
+	createCanvas(windowWidth, windowHeight);
+	farve =[color(66,66,66),color(66,66,66),color(66,66,66)];
+	
+}
+
+draw = function() {
+
+//baggrund        
+	background(127, 204, 255);
+
+// skaber en ny ellipse i hvert gennemløb med en tilfældig x- og en y-koordinat lig 0 og en farve ved kun nogle af gennemgangene
+	
+    
+// tæller alle Ellipser igennem   
+    for (var i=0; i<x.length; i++){
+    
+//tegner ellipser
+	noStroke();
+	fill(farve[i]);
+	ellipse(x[i],y[i],50,50);
+
+// flytter Ellipser
+        y[i] = y[i] + vy;
+
+//ændrer farve for de ellipser der er inden for rektanglet
+	if (x[i]<mouseX+100 && x[i]>mouseX-100 && y[i]>600 && y[i]<620){
+    farve[i] = color(127,204,255);  
+	}
+	
+	if(y[i]>windowHeight){
+		y[i]=random(-300,0)
+	}
+// rektangel med mus i centrum af rektangel
+    fill(200,0,0);
+    rect(mouseX-100, 600, 200, 20);
+
+
+
+
+    }
+	
+};
