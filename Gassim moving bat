@@ -23,7 +23,7 @@ var bodyColor = [];
 
 var bx = 700;
 var by = 600;
-var bh = 10;
+var bh = 100;
 var bw = 100;
 
 
@@ -71,27 +71,20 @@ rect(bx-0.5*bw,by-0.5*bh,bw,bh);
 
  //collision bat top
 
-            if (ypos[i]>by-0.5*(bh+bodyLength) && ypos[i]<by-0.4*(bh+bodyLength) && xpos[i]>bx-0.5*bw && xpos[i]<bx+0.5*bw && speedy[i]>0){
+ //collision bat bottom or top
+
+            
+           if (ypos[i]<by+0.5*(bh+bodyLength) && ypos[i]>by-0.5*(bh+bodyLength) && xpos[i]>bx-0.5*(bw+bodyLength) && xpos[i]<bx+0.5*(bw+bodyLength)){
 
                 speedy[i] = -1*speedy[i];
             }
- //collision bat bottom
 
-            if (ypos[i]<by+0.5*(bh+bodyLength) && ypos[i]>by-0.4*(bh+bodyLength) && xpos[i]>bx-0.5*bw && xpos[i]<bx+0.5*bw && speedy[i]<0){
-
-                speedy[i] = -1*speedy[i];
-            }
-
-//collision bat left side
-             if (ypos[i]<by+0.5*(bh+bodyLength) && ypos[i]>by-0.5*(bh+bodyLength) && xpos[i]>bx-0.51*bw && xpos[i]<bx-0.5*bw && speedx[i]>0){
+//collision bat left or right side
+             if (ypos[i]<by+0.5*(bh+bodyLength) && ypos[i]>by-0.5*(bh+bodyLength) && xpos[i]>bx-0.5*(bw+bodyLength) && xpos[i]<bx-0.5*(bw+bodyLength) && speedx[i]>0){
 
                  speedx[i] = -1*speedx[i];
-             }
-//collision bat right side
-             if (ypos[i]<by+0.5*(bh+bodyLength) && ypos[i]>by-0.5*(bh+bodyLength) && xpos[i]<bx+0.5*bw && xpos[i]>bx+0.49*bw && speedx[i]<0){
+          }
 
-                 speedx[i] = -1*speedx[i];
-             }
 
 
 
